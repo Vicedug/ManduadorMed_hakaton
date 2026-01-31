@@ -44,7 +44,7 @@ Más que un simple recordatorio, este proyecto es una **herramienta de asistenci
 |   |-- main.py                 (Punto de entrada principal)
 |   |-- automatizador.py        (Cerebro: Chequea horarios y lanza tareas)
 |   |-- gestor.py               (Lógica: Maneja datos, lee/escribe archivos)
-|   |-- notificador.py          (Salida: Envía Telegram, WhatsApp, Audio)
+|   |-- notificador.py          (Salida: Envía Telegram)
 |   |-- test_telegram.py        (Scripts de prueba...)
 |   |-- test_whatsapp.py
 |
@@ -54,35 +54,3 @@ Más que un simple recordatorio, este proyecto es una **herramienta de asistenci
 2. Flujo del Sistema (Paso a Paso)
 El sistema funciona en un bucle continuo conectando estos componentes:
 
-Fase A: Configuración (Usuario -> Sistema)
-Entrada: El usuario abre el navegador y va a la web local.
-Proceso: 
-src/web/app.py
- recibe los datos (ej: "Tomar Ibuprofeno a las 14:00").
-Almacenamiento: 
-app.py
- usa funciones de 
-src/gestor.py
- para guardar esta información en los archivos dentro de la carpeta data/.
-Fase B: Monitoreo (Sistema en Segundo Plano)
-Vigilancia: El script 
-src/automatizador.py
- se ejecuta constantemente (bucle infinito).
-Consulta: Cada minuto, pregunta a 
-src/gestor.py
-: "¿Hay alguna medicina programada para esta hora exacta?".
-Decisión: Si la respuesta es SÍ, pasa a la fase de notificación.
-Fase C: Acción (Sistema -> Usuario)
-Ejecución: 
-src/automatizador.py
- llama a 
-src/notificador.py
-.
-Salida: 
-notificador.py
- ejecuta las acciones configuradas:
-Reproduce un audio en la PC ("Es hora de su medicación").
-Envía un mensaje a Telegram usando el token de 
-config.json
-.
-Envía un mensaje a WhatsApp (si está configurado)."""
