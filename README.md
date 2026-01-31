@@ -23,3 +23,66 @@ Este proyecto propone una solución híbrida (Web de Gestión + Automatización 
 
 ## Conclusión
 Más que un simple recordatorio, este proyecto es una **herramienta de asistencia sanitaria** que utiliza la tecnología para humanizar el cuidado, devolviendo autonomía al paciente y brindando soporte logístico a su red de apoyo.
+Estructura de Carpetas
+A continuación, se muestra cómo están organizados los archivos en tu proyecto:
+
+Proyecto H5
+data/
+docs/
+src/
+.venv/
+config.json
+PyWhatKit_DB.txt
+fundamentacion_proyecto.md
+web/
+main.py
+automatizador.py
+gestor.py
+notificador.py
+Tests scripts...
+app.py
+templates/
+static/
+Flujo de Funcionamiento
+Este diagrama explica cómo se conectan las partes lógica (Python) con la interfaz (Web) y el usuario.
+
+Interfaz Web (Gestión): El usuario (familiar/cuidador) usa la web para cargar las recetas.
+Base de Datos/Archivos: La Web guarda estos datos (probablemente en JSON o BD gestionada por 
+gestor.py
+).
+El "Cerebro" (Automatizador): 
+automatizador.py
+ se ejecuta en segundo plano (o lanzado por 
+main.py
+). Lee periódicamente los datos para saber cuándo toca una medicación.
+Notificación: Cuando es la hora, usa 
+notificador.py
+ para enviar alertas (Telegram/WhatsApp/Audio).
+Automatización (Paciente)
+Lógica del Sistema
+Interfaz de Gestión (Familiar)
+1. Carga Receta
+2. Guarda Datos
+3. Escribe
+4. Consulta Horarios
+5. Lee
+6. Detecta Hora
+7. Alerta de Voz
+8. Mensaje
+Navegador Web
+src/web/app.py
+src/gestor.py
+Datos/JSON
+src/automatizador.py
+src/notificador.py
+Altavoces/Escritorio
+Telegram API
+Descripción de Componentes Clave
+src/web/app.py
+: El servidor web (Flask). Aquí es donde defines las rutas (/agregar, /lista, etc.) y renderizas las plantillas HTML para que el usuario interactúe.
+src/gestor.py
+: El intermediario. Probablemente contiene funciones como cargar_recetas(), guardar_receta(), etc. Sirve para que tanto la Web como el Automatizador hablen el mismo idioma y no toquen los archivos "crudos" directamente.
+src/automatizador.py
+: El script que "nunca duerme" (o que se ejecuta regularmente). Revisa constantemente si la hora actual coincide con alguna hora de medicación guardada.
+src/notificador.py
+: El especialista en mensajería. Sabe cómo hablar con la API de Telegram o cómo usar librerías para enviar mensajes de WhatsApp o reproducir sonidos.
