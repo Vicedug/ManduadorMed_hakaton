@@ -28,7 +28,9 @@ Más que un simple recordatorio, este proyecto es una **herramienta de asistenci
 
 <img width="838" height="709" alt="Captura de pantalla 2026-01-31 223611" src="https://github.com/user-attachments/assets/503ec53a-c5d1-40ed-a6c6-1c239702421b" />
 
+
 2. Flujo del Sistema (Paso a Paso)
+   
 El sistema funciona en un bucle continuo conectando estos componentes:
 
 Fase A: Configuración (Usuario $\rightarrow$ Sistema)
@@ -47,6 +49,8 @@ Fase C: Acción (Sistema $\rightarrow$ Usuario)
 
 Ejecución: src/automatizador.py llama al módulo src/notificador.py.
 Salida: Se ejecutan las acciones configuradas, como el envío de mensajes a Telegram utilizando el token de config.json.
+
+
 Plan de Distribución de Trabajo por Arquitectura
 
 1. Rol: Desarrollador Backend (El "Motor")
