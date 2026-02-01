@@ -29,96 +29,50 @@ Más que un simple recordatorio, este proyecto es una **herramienta de asistenci
 <img width="838" height="709" alt="Captura de pantalla 2026-01-31 223611" src="https://github.com/user-attachments/assets/503ec53a-c5d1-40ed-a6c6-1c239702421b" />
 
 2. Flujo del Sistema (Paso a Paso)
-   
 El sistema funciona en un bucle continuo conectando estos componentes:
-
-Fase A: Configuración (Usuario -> Sistema)
-Entrada: El usuario abre el navegador y va a la web local.
-Proceso: 
-src/web/app.py
- recibe los datos (ej: "Tomar Ibuprofeno a las 14:00").
-Almacenamiento: 
-app.py
- usa funciones de 
-src/gestor.py
- para guardar esta información en los archivos dentro de la carpeta data/.
-
+Fase A: Configuración (Usuario $\rightarrow$ Sistema)
+Entrada: El usuario abre el navegador y accede a la web local.
+Proceso: src/web/app.py recibe los datos de la medicación.
+Almacenamiento: app.py utiliza las funciones de src/gestor.py para persistir la información en la carpeta data/.
 Fase B: Monitoreo (Sistema en Segundo Plano)
-Vigilancia: El script 
-src/automatizador.py
- se ejecuta constantemente (bucle infinito).
-Consulta: Cada minuto, pregunta a 
-src/gestor.py
-: "¿Hay alguna medicina programada para esta hora exacta?".
-Decisión: Si la respuesta es SÍ, pasa a la fase de notificación.
-
-Fase C: Acción (Sistema -> Usuario)
-Ejecución: 
-src/automatizador.py
- llama a 
-src/notificador.py
-.
-Salida: 
-notificador.py
- ejecuta las acciones configuradas:
-Envía un mensaje a Telegram usando el token de 
-config.json
-.
-
+Vigilancia: El script src/automatizador.py se ejecuta constantemente en un bucle infinito.
+Consulta: Cada minuto, pregunta a src/gestor.py: "¿Hay alguna medicina programada para esta hora exacta?".
+Decisión: Si existe una coincidencia, se dispara la fase de acción.
+Fase C: Acción (Sistema $\rightarrow$ Usuario)
+Ejecución: src/automatizador.py llama al módulo src/notificador.py.
+Salida: Se ejecutan las acciones configuradas, como el envío de mensajes a Telegram utilizando el token de config.json.
 Plan de Distribución de Trabajo por Arquitectura
-
-
-1. Rol: Desarrollador Backend (El "Motor") Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
-
-Enfoque: Lógica de negocio, manejo de datos y automatización en segundo plano.
-
-Carpeta de Trabajo: src/ (raíz) y data/
-Archivos Responsables:
-src/gestor.py
-: Crear funciones CRUD (Crear, Leer, Actualizar, Borrar) para las recetas. Asegurar que los datos se guarden bien en persistencia.
-src/automatizador.py
-: Programar el bucle infinito eficiente. Asegurar que no consuma mucha CPU y que compare bien las horas.
-src/notificador.py
-: Implementar la conexión con API de Telegram.
-data/config.json
-: Definir la estructura de configuración que usará el sistema.
-
-
-2. Rol: Desarrollador Frontend / Web (La "Cara") Responsables: Victor E. Gonzalez, Anita Escurra
-
-Enfoque: Interfaz gráfica para el usuario (cuidadores/familiares) y experiencia de usuario (UX).
-
-Carpeta de Trabajo: src/web/
-Archivos Responsables:
-src/web/templates/: Diseñar los HTMLs. Que sean claros, botones grandes (accesibilidad), formularios fáciles de usar.
-src/web/static/: CSS para que se vea bien y JS para interactividad simple en el navegador.
-src/web/app.py: Crear las rutas (@app.route). Importante: Este rol debe coordinar con el Backend para usar las funciones de gestor.py correctamente desde aquí.
-
-
-3. Rol: QA & Testing (El "Control de Calidad") Responsables: Juan Gonzalez, Kevin Bello, Anita Escurra
-
-Enfoque: Asegurar que nada falle y que las integraciones funcionen.
-
-Carpeta de Trabajo: src/ (Scripts de prueba)
-Archivos Responsables:
-src/test_telegram.py: Crear scripts aislados para verificar que las claves de API funcionan y los mensajes llegan.
-Pruebas de Integración: Verificar el flujo completo: Crear receta en Web -> Verificar que se guarda en Data -> Verificar que Automatizador la detecta.
-
-4. Rol: DevOps / Integrador (El "Armador") Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
-
-Enfoque: Puesta en marcha, documentación y facilidad de instalación.
-
-Carpeta de Trabajo: Raíz y docs/
-Archivos Responsables:
-requirements.txt: Mantener las versiones de librerías actualizadas y compatibles.
-run.bat: Asegurar que el script de inicio levante tanto el servidor web como el automatizador (quizás en procesos paralelos).
-docs/: Mantener la documentación al día para que cualquier nuevo desarrollador entienda el proyecto.
-
-
+1. Rol: Desarrollador Backend (El "Motor")
+Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
+Enfoque: Lógica de negocio, manejo de datos y automatización.
+Archivos Clave:
+src/gestor.py: Funciones CRUD para recetas.
+src/automatizador.py: Bucle de monitoreo eficiente (bajo consumo de CPU).
+src/notificador.py: Conexión con la API de Telegram.
+data/config.json: Estructura de configuración global.
+2. Rol: Desarrollador Frontend / Web (La "Cara")
+Responsables: Victor E. Gonzalez, Anita Escurra
+Enfoque: Interfaz gráfica (UI) y experiencia de usuario (UX) para cuidadores.
+Archivos Clave:
+src/web/templates/: HTML accesible (botones grandes y claros).
+src/web/static/: Estilos CSS e interactividad JS.
+src/web/app.py: Definición de rutas Flask y coordinación con el Backend.
+3. Rol: QA & Testing (El "Control de Calidad")
+Responsables: Juan Gonzalez, Kevin Bello, Anita Escurra
+Enfoque: Estabilidad e integridad de las integraciones.
+Archivos Clave:
+src/test_telegram.py: Pruebas aisladas de la API.
+Pruebas de Integración: Validación del flujo completo (Web $\rightarrow$ Data $\rightarrow$ Alerta).
+4. Rol: DevOps / Integrador (El "Armador")
+Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
+Enfoque: Despliegue, documentación y empaquetado.
+Archivos Clave:
+requirements.txt: Gestión de dependencias.
+run.bat: Script de inicio dual (Web + Automatizador).
+docs/: Documentación técnica y manuales.
 Resumen de Flujo de Trabajo Sugerido
-
 Backend define la estructura de datos en gestor.py.
-Frontend crea las pantallas en src/web/ usando la estructura definida.
-Backend implementa la lógica de alertas en automatizador.py en paralelo.
-QA escribe tests para validar notificador.py independientemente.
-Integrador junta todo en main.py o run.bat y verifica.
+Frontend diseña las pantallas basándose en esa estructura.
+Backend implementa la lógica de alertas en paralelo.
+QA valida el sistema de notificaciones de forma independiente.
+Integrador une todas las piezas y genera el script de ejecución final.
