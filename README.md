@@ -69,6 +69,7 @@ Plan de Distribución de Trabajo por Arquitectura
 
 
 1. Rol: Desarrollador Backend (El "Motor") Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
+
 Enfoque: Lógica de negocio, manejo de datos y automatización en segundo plano.
 
 Carpeta de Trabajo: src/ (raíz) y data/
@@ -84,6 +85,7 @@ data/config.json
 
 
 2. Rol: Desarrollador Frontend / Web (La "Cara") Responsables: Victor E. Gonzalez, Anita Escurra
+
 Enfoque: Interfaz gráfica para el usuario (cuidadores/familiares) y experiencia de usuario (UX).
 
 Carpeta de Trabajo: src/web/
@@ -94,6 +96,7 @@ src/web/app.py: Crear las rutas (@app.route). Importante: Este rol debe coordina
 
 
 3. Rol: QA & Testing (El "Control de Calidad") Responsables: Juan Gonzalez, Kevin Bello, Anita Escurra
+
 Enfoque: Asegurar que nada falle y que las integraciones funcionen.
 
 Carpeta de Trabajo: src/ (Scripts de prueba)
@@ -102,6 +105,7 @@ src/test_telegram.py: Crear scripts aislados para verificar que las claves de AP
 Pruebas de Integración: Verificar el flujo completo: Crear receta en Web -> Verificar que se guarda en Data -> Verificar que Automatizador la detecta.
 
 4. Rol: DevOps / Integrador (El "Armador") Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
+
 Enfoque: Puesta en marcha, documentación y facilidad de instalación.
 
 Carpeta de Trabajo: Raíz y docs/
