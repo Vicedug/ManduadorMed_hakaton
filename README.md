@@ -100,6 +100,7 @@ Integrador une todas las piezas y genera el script de ejecución final.
 
 
  Guía Rápida de Git para ManduadorMed
+ 
 1. Configuración Inicial (Solo la primera vez)
 Antes de empezar, identifíquense para que sepamos quién hizo cada parte del código.
 
