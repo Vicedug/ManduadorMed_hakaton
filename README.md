@@ -42,6 +42,7 @@ app.py
  usa funciones de 
 src/gestor.py
  para guardar esta información en los archivos dentro de la carpeta data/.
+
 Fase B: Monitoreo (Sistema en Segundo Plano)
 Vigilancia: El script 
 src/automatizador.py
@@ -50,6 +51,7 @@ Consulta: Cada minuto, pregunta a
 src/gestor.py
 : "¿Hay alguna medicina programada para esta hora exacta?".
 Decisión: Si la respuesta es SÍ, pasa a la fase de notificación.
+
 Fase C: Acción (Sistema -> Usuario)
 Ejecución: 
 src/automatizador.py
