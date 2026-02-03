@@ -2,7 +2,6 @@
 Main ejecuta todo como su nombre indica, "prende" el sitio y la logica de backend
 frontend -> logica base de datos (gestor) -> logica de mandar mensaje (notificador) -> logica de repeticion (automatizacion)
 '''
-# python -m src.main
 # Usar este formato par modularizacion correcta, desde la raiz del proyecto, corregir y ver uso adecuado
 
 import subprocess
@@ -13,14 +12,23 @@ import sys
 import os
 
 
+# Get the absolute path of the directory where main.py is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def start_server():
     print("[Launcher] Starting Web Server...")
-    # Using python directly assuming it's in path
-    return subprocess.Popen(["python", "src/web/app.py"], shell=True)
+    # Build the path to app.py relative to this script
+    script_path = os.path.join(BASE_DIR, "src", "web", "app.py")
+    
+    # Use sys.executable to ensure we use the same venv
+    return subprocess.Popen([sys.executable, script_path])
 
 def start_automation():
     print("[Launcher] Starting Automation Engine...")
-    return subprocess.Popen(["python", "src/automatizador.py"], shell=True)
+    # Build the path to automatizador.py
+    script_path = os.path.join(BASE_DIR, "src", "automatizador.py")
+    
+    return subprocess.Popen([sys.executable, script_path])
 
 def wait_for_server(url, timeout=30):
     print(f"[Launcher] Waiting for server at {url}...")
