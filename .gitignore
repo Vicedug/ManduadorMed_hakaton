@@ -1,0 +1,8 @@
+# Entornos virtuales
+.venv/
+
+# Archivos locales de configuración
+data/config.json
+
+# Archivos de Python compilados
+*.pyc

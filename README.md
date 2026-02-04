@@ -1,245 +1,164 @@
-# Manduador Med - Asistente Automatizado de Medicación
+# ManduadorMed_hakaton
+Se crea este repositorio para trabajar en conjunto por el proyecto de la hakaton_5.0. Se trata de un script que manda mensajes recordatorios a los usuarios.
+## Contexto y Problemática Social
+El envejecimiento poblacional es una realidad global. Con la edad, aumenta la prevalencia de enfermedades crónicas que requieren polifarmacia (uso de múltiples medicamentos). Un problema crítico en la geriatría es la **falta de adherencia terapéutica**: los pacientes olvidan sus dosis, las confunden o las repiten, lo que conlleva descompensaciones, hospitalizaciones evitables y un deterioro en la calidad de vida.
 
-Un sistema híbrido (Web + Automatización de Escritorio) diseñado para ayudar a adultos mayores a gestionar su medicación de forma segura y autónoma, reduciendo errores de dosificación y mejorando la adherencia terapéutica.
+Este proyecto propone una solución híbrida (Web de Gestión + Automatización de Escritorio) diseñada específicamente para reducir la brecha digital y asegurar la continuidad del tratamiento.
 
-## 🎯 Propósito del Proyecto
+## Impacto y Utilidad por Actores
 
-El envejecimiento poblacional trae consigo un aumento en enfermedades crónicas que requieren polifarmacia (múltiples medicamentos). **El problema:** los pacientes olvidan dosis, las confunden o las repiten, lo que causa hospitalizaciones evitables y deterioro en la calidad de vida.
+### 1. Para el Paciente (Adulto Mayor)
+*   **Independencia y Dignidad:** Permite al usuario mantener el control de su salud sin depender constantemente de que otra persona le diga qué hacer en el momento exacto.
+*   **Accesibilidad Cognitiva:** Al usar un sistema de "Automatización Pasiva", el paciente **no necesita interactuar con la tecnología** para recibir el beneficio. No requiere logins, contraseñas ni navegación. El sistema "va" hacia ellos mediante alertas de voz (Text-to-Speech) y ventanas emergentes claras.
+*   **Reducción de Errores:** Minimiza el riesgo de olvidar una dosis o tomar una doble por error, actuando como una memoria externa fiable.
 
-**La solución:** Manduador Med propone:
-- ✅ **Interfaz Web intuitiva** para que cuidadores y médicos gestionen recetas
-- ✅ **Automatización de escritorio** que alerta al paciente SIN requerir interacción tecnológica
-- ✅ **Accesibilidad cognitiva** mediante alertas de voz y ventanas emergentes claras
-- ✅ **Reducción de errores** actuando como una memoria externa fiable
+### 2. Para los Familiares y Cuidadores
+*   **Gestión Simplificada (Interfaz Web):** La interfaz Web permite que hijos o enfermeros carguen y organicen el esquema de medicación de forma rápida y centralizada, sin tener que interactuar con archivos de configuración complejos.
+*   **Tranquilidad Mental:** Reduce la carga mental de estar pendiente del reloj ("carga del cuidador"), sabiendo que un sistema robusto avisará al paciente.
+*   **Flexibilidad:** Permite modificar dosis u horarios fácilmente tras una visita médica, asegurando que el paciente siempre tenga la pauta actualizada.
 
-## 👥 Actores Beneficiados
+### 3. Para los Médicos y Profesionales de la Salud
+*   **Eficacia Terapéutica:** La mejor medicina no funciona si no se toma. Este sistema asegura que el tratamiento prescrito se siga tal cual fue diseñado, mejorando los outcomes clínicos.
+*   **Estandarización:** Facilita que las indicaciones (nombre, miligramos, horario) se trasladen de la receta de papel a un sistema digital estructurado, reduciendo la ambigüedad en el hogar.
 
-### 👴 Paciente (Adulto Mayor)
-- Independencia y dignidad en la gestión de su salud
-- Sin necesidad de interactuar con tecnología compleja
+## Conclusión
+Más que un simple recordatorio, este proyecto es una **herramienta de asistencia sanitaria** que utiliza la tecnología para humanizar el cuidado, devolviendo autonomía al paciente y brindando soporte logístico a su red de apoyo.
 
+1. Diseño de Carpetas
 
-### 👨‍👩‍👧 Cuidadores y Familiares
-- Gestión centralizada de medicamentos
-- Tranquilidad mental sabiendo que el sistema alerta automáticamente
-- Modificación fácil de dosis tras cambios médicos
-
-### 👨‍⚕️ Médicos y Profesionales
-- Mejora en la eficacia terapéutica garantizando que los pacientes sigan el tratamiento
-- Estandarización digital de prescripciones
-- Reducción de ambigüedad en la medicación
-
-## 📁 Estructura del Proyecto
-
-```
-Proyecto H5/
-├── src/                      # Backend principal (Python)
-│   ├── main.py              # Punto de entrada del sistema
-│   ├── automatizador.py      # Lógica de automatización de alertas
-│   ├── gestor.py            # Gestión de recetas y medicamentos
-│   ├── notificador.py       # Sistema de notificaciones
-│   └── web/
-│       ├── app.py           # Aplicación web Flask/similar
-│       ├── templates/       # Templates HTML
-│       └── static/          # Assets compilados
-├── frontend_src/            # Frontend React + TypeScript
-│   ├── src/
-│   │   ├── App.jsx          # Componente principal
-│   │   ├── components/      # Componentes React
-│   │   │   ├── Header.tsx
-│   │   │   ├── MedicationCalendar.tsx
-│   │   │   ├── NewRecipeForm.tsx
-│   │   │   └── AlertConfig.tsx
-│   │   └── main.tsx
-│   ├── vite.config.ts       # Configuración Vite
-│   ├── tailwind.config.js   # Configuración Tailwind CSS
-│   └── package.json
-├── data/                    # Archivos de configuración
-│   ├── config.json          # Configuración del sistema
-│   └── recetas.json         # Base de datos de recetas
-├── docs/
-│   └── fundamentacion_proyecto.md
-└── requirements.txt         # Dependencias Python
-```
-
-## 🛠️ Tecnologías Utilizadas
-
-### Backend
-- **Python 3.x** - Lógica principal
-- **Flask** - Framework web
-- **Schedule** - Programación de tareas
-- **Requests** - Cliente HTTP
-
-### Frontend
-- **React 18.2** - Framework de interfaz
-- **TypeScript** - Tipado estático
-- **Vite** - Bundler ultrarrápido
-- **Tailwind CSS** - Estilos utility-first
-- **Lucide React** - Iconografía
-
-## 🚀 Instalación y Configuración
-
-### Requisitos Previos
-- Python 3.8+
-- Node.js 16+
-- npm o yarn
-
-### Setup del Backend
-
-```bash
-# 1. Navegar al directorio del proyecto
-cd "Proyecto H5"
-
-# 2. Crear entorno virtual (si no existe)
-python -m venv .venv
-
-# 3. Activar entorno virtual
-# En Windows:
-.venv\Scripts\activate
-# En macOS/Linux:
-source .venv/bin/activate
-
-# 4. Instalar dependencias Python
-pip install -r requirements.txt
-```
-
-### Setup del Frontend
-
-```bash
-# 1. Navegar al directorio frontend
-cd frontend_src
-
-# 2. Instalar dependencias Node.js
-npm install
-
-# 3. Ejecutar servidor de desarrollo
-npm run dev
-
-# 4. Para producción
-npm run build
-```
-
-## 📊 Configuración del Sistema
-
-### `data/config.json`
-Define la configuración general del sistema:
-```json
-{
-  "app_name": "Manduador Med",
-  "language": "es",
-  "timezone": "America/Argentina/Buenos_Aires",
-  "patient_name": "Nombre del Paciente"
-}
-```
-
-### `data/recetas.json`
-Almacena las recetas de medicamentos:
-```json
-{
-  "recetas": [
-    {
-      "id": "receta_001",
-      "nombre_medicamento": "Medicamento X",
-      "miligramos": 500,
-      "horarios": ["08:00", "14:00", "20:00"],
-      "observaciones": "Tomar con alimentos"
-    }
-  ]
-}
-```
-
-## 🔧 Scripts Disponibles
-
-| Script | Descripción |
-|--------|-------------|
-| `launcher.py` | Inicia la aplicación |
-| `main.py` | Punto de entrada del sistema |
-| `automatizador.py` | Gestiona alertas automáticas |
-| `gestor.py` | Administra recetas y medicamentos |
-| `notificador.py` | Envía notificaciones |
-| `test_*.py` | Suite de pruebas |
-| `reset_recetas.py` | Reinicia la base de datos de recetas |
-
-## 🚀 Uso
-
-### Iniciar el Sistema
-```bash
-python src/main.py
-```
-
-### Acceder a la Interfaz Web
-La aplicación estará disponible en:
-```
-http://localhost:5000
-```
-
-### Principales Funcionalidades
-
-1. **Crear Nueva Receta** - Agregar medicamentos con horarios
-2. **Configurar Alertas** - Personalizar notificaciones
-3. **Ver Calendario** - Visualizar medicación programada
-4. **Generar Reportes** - Tracking de dosis tomadas
-
-## 🔔 Sistema de Notificaciones
-
-El sistema automatiza alertas mediante:
-- 🪟 **Ventanas emergentes** en escritorio
-- 📱 **Notificaciones** en la interfaz web
+<img width="838" height="709" alt="Captura de pantalla 2026-01-31 223611" src="https://github.com/user-attachments/assets/503ec53a-c5d1-40ed-a6c6-1c239702421b" />
 
 
+2. Flujo del Sistema (Paso a Paso)
+   
+El sistema funciona en un bucle continuo conectando estos componentes:
 
-Crear un archivo `.env` en la raíz:
-```env
-FLASK_ENV=development
-FLASK_DEBUG=True
-DATABASE_PATH=data/recetas.json
-CONFIG_PATH=data/config.json
-```
+Fase A: Configuración (Usuario $\rightarrow$ Sistema)
 
-## 🧪 Testing
+Entrada: El usuario abre el navegador y accede a la web local.
+Proceso: src/web/app.py recibe los datos de la medicación.
+Almacenamiento: app.py utiliza las funciones de src/gestor.py para persistir la información en la carpeta data/.
 
-Ejecutar pruebas:
-```bash
-python test_full_flow.py
-```
+Fase B: Monitoreo (Sistema en Segundo Plano)
 
-Verificar funcionalidad de eliminación:
-```bash
-python verify_delete_again.py
-```
+Vigilancia: El script src/automatizador.py se ejecuta constantemente en un bucle infinito.
+Consulta: Cada minuto, pregunta a src/gestor.py: "¿Hay alguna medicina programada para esta hora exacta?".
+Decisión: Si existe una coincidencia, se dispara la fase de acción.
 
-## 📚 Documentación Adicional
+Fase C: Acción (Sistema $\rightarrow$ Usuario)
 
-Para más detalles sobre la fundamentación y propósito del proyecto:
-```bash
-cat docs/fundamentacion_proyecto.md
-```
+Ejecución: src/automatizador.py llama al módulo src/notificador.py.
+Salida: Se ejecutan las acciones configuradas, como el envío de mensajes a Telegram utilizando el token de config.json.
 
-## 🐛 Solución de Problemas
 
-### El sistema no inicia
-1. Verificar que todas las dependencias estén instaladas: `pip install -r requirements.txt`
-2. Revisar los permisos de lectura/escritura en `data/`
-3. Asegurar que no hay otra instancia ejecutándose en el puerto 5000
+Plan de Distribución de Trabajo por Arquitectura
 
-### Las alertas no funcionan
-1. Verificar que el servicio de notificaciones está activo
-2. Revisar la configuración de `data/config.json`
-3. Consultar los logs en la consola
+1. Rol: Desarrollador Backend (El "Motor")
+   
+Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
 
-### Problemas con el frontend
-1. Limpiar cache: `rm -rf node_modules && npm install`
-2. Reconstruir: `npm run build`
-3. Verificar versión de Node.js: `node --version`
+Enfoque: Lógica de negocio, manejo de datos y automatización.
+Archivos Clave:
+src/gestor.py: Funciones CRUD para recetas.
+src/automatizador.py: Bucle de monitoreo eficiente (bajo consumo de CPU).
+src/notificador.py: Conexión con la API de Telegram.
+data/config.json: Estructura de configuración global.
 
-## 📄 Licencia
+3. Rol: Desarrollador Frontend / Web (La "Cara")
 
-Este proyecto fue desarrollado como parte de un hackathon.
+Responsables: Victor E. Gonzalez, Anita Escurra
+Enfoque: Interfaz gráfica (UI) y experiencia de usuario (UX) para cuidadores.
+Archivos Clave:
+src/web/templates/: HTML accesible (botones grandes y claros).
+src/web/static/: Estilos CSS e interactividad JS.
+src/web/app.py: Definición de rutas Flask y coordinación con el Backend.
 
-## 👨‍💻 Autor
+4. Rol: QA & Testing (El "Control de Calidad")
+   
+Responsables: Juan Gonzalez, Kevin Bello, Anita Escurra
+Enfoque: Estabilidad e integridad de las integraciones.
+Archivos Clave:
+src/test_telegram.py: Pruebas aisladas de la API.
+Pruebas de Integración: Validación del flujo completo (Web $\rightarrow$ Data $\rightarrow$ Alerta).
 
-Desarrollado por el equipo de HELLO WORLD
+6. Rol: DevOps / Integrador (El "Armador")
+   
+Responsables: Rodrigo Segovia, Juan Manuel Ayala, Daniel Valdez
+Enfoque: Despliegue, documentación y empaquetado.
+Archivos Clave:
+requirements.txt: Gestión de dependencias.
+run.bat: Script de inicio dual (Web + Automatizador).
+docs/: Documentación técnica y manuales.
 
----
+Resumen de Flujo de Trabajo Sugerido
 
-**Última actualización:** Febrero 2026
+Backend define la estructura de datos en gestor.py.
+Frontend diseña las pantallas basándose en esa estructura.
+Backend implementa la lógica de alertas en paralelo.
+QA valida el sistema de notificaciones de forma independiente.
+Integrador une todas las piezas y genera el script de ejecución final.
+
+
+ Guía Rápida de Git para ManduadorMed
+ 
+1. Configuración Inicial (Solo la primera vez)
+Antes de empezar, identifíquense para que sepamos quién hizo cada parte del código.
+
+Bash
+
+
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+
+
+2. Obtener el Proyecto
+Para traer el repositorio a su computadora local por primera vez.
+
+Bash
+
+
+git clone https://github.com/usuario/ManduadorMed.git
+cd ManduadorMed
+
+
+3. Flujo Diario de Trabajo (El ciclo de oro)
+Este es el orden que deben seguir cada vez que trabajen en una tarea:
+Paso 1: Sincronizar. Antes de escribir código, traigan lo que otros subieron.
+Bash
+git pull origin main
+
+
+Paso 2: Verificar. Vean qué archivos han modificado.
+Bash
+git status
+
+
+Paso 3: Preparar. Agreguen sus cambios al "área de preparación".
+Bash
+git add . # Agrega todos los archivos nuevos o modificados
+
+
+Paso 4: Comentar. Pónganle una etiqueta a sus cambios.
+Bash
+git commit -m "Backend: Implementada lógica de envío en notificador.py"
+
+
+Paso 5: Subir. Envíen sus cambios a la nube para que el resto los vea.
+Bash
+git push origin main
+
+
+⚠️ Reglas de Oro para el Equipo
+Hacer Commits pequeños: No esperen a terminar todo el proyecto para hacer un commit. Hagan uno por cada función pequeña que funcione.
+Mensajes claros: Eviten mensajes como "cambios" o "asdfg". Usen mensajes descriptivos como: "Frontend: Ajustado tamaño de botones para adultos mayores".
+Hacer Pull frecuentemente: Para evitar "conflictos de fusión" (cuando dos personas tocan la misma línea de código), hagan git pull varias veces al día.
+No subir el archivo .env: Si tienen el archivo con el Token de Telegram, asegúrense de que esté listado en el archivo .gitignore.
+💡 Comandos de Emergencia
+¿Hice algo mal y quiero ver qué cambió?
+Bash
+git diff
+
+
+¿Quiero ver el historial de quién hizo qué?
+Bash
+git log --oneline
